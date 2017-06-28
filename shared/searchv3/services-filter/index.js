@@ -130,7 +130,7 @@ class Filter extends Component<void, Props, {hoveredService: ?Constants.Service}
 const serviceTooltipStyle = {
   ...transition('opacity'),
   backgroundColor: globalColors.black_40,
-  borderBottom: '2px solid white',
+  borderBottom: `2px ${globalColors.white}`,
   borderRadius: 65,
   color: globalColors.white,
   cursor: 'default',
