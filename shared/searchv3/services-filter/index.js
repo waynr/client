@@ -53,8 +53,8 @@ const Service = ({service, selected, hovering, onHover, onSelect}) => {
 
   const boxProps = isMobile
     ? {
-        onPressIn: () => onHover(true),
-        onPressOut: () => onHover(false),
+        onPressIn: () => onHover(service, true),
+        onPressOut: () => onHover(service, false),
         style: {
           ...globalStyles.flexBoxCenter,
           backgroundColor,
@@ -64,8 +64,8 @@ const Service = ({service, selected, hovering, onHover, onSelect}) => {
         },
       }
     : {
-        onMouseEnter: () => onHover(true),
-        onMouseLeave: () => onHover(false),
+        onMouseEnter: () => onHover(service, true),
+        onMouseLeave: () => onHover(service, false),
         style: {
           ...globalStyles.flexBoxCenter,
           backgroundColor,
@@ -118,7 +118,7 @@ class Filter extends Component<void, Props, {hoveredService: ?Constants.Service}
             service={service}
             selected={service === this.props.selectedService}
             hovering={service === this.state.hoveredService}
-            onHover={isHovering => this._hoverChanged(service, isHovering)}
+            onHover={this._hoverChanged}
             onSelect={this._selectService}
           />
         ))}
@@ -134,7 +134,6 @@ const serviceTooltipStyle = {
   borderRadius: 65,
   color: globalColors.white,
   cursor: 'default',
-  left: -16,
   lineHeight: '22px',
   minHeight: 22,
   minWidth: 86,
