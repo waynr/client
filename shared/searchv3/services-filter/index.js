@@ -117,7 +117,7 @@ class Filter extends Component<void, Props, {hoveredService: ?Constants.Service}
             key={service}
             service={service}
             selected={service === this.props.selectedService}
-            hovering={service === this.state.hoveredService}
+            hovering={service === this.state.hoveredService && !isMobile}
             onHover={this._hoverChanged}
             onSelect={this._selectService}
           />
@@ -127,19 +127,29 @@ class Filter extends Component<void, Props, {hoveredService: ?Constants.Service}
   }
 }
 
+const serviceTooltipPlatformStyle = isMobile
+  ? {
+      borderBottomColor: `${globalColors.white}`,
+      borderBottomWidth: 2,
+      top: -8,
+    }
+  : {
+      ...transition('opacity'),
+      lineHeight: '22px',
+      cursor: 'default',
+      borderBottom: `2px ${globalColors.white}`,
+      top: -24,
+    }
+
 const serviceTooltipStyle = {
-  ...transition('opacity'),
   backgroundColor: globalColors.black_40,
-  borderBottom: `2px ${globalColors.white}`,
+  ...serviceTooltipPlatformStyle,
   borderRadius: 65,
   color: globalColors.white,
-  cursor: 'default',
-  lineHeight: '22px',
   minHeight: 22,
   minWidth: 86,
   position: 'absolute',
   textAlign: 'center',
-  top: -24,
 }
 
 export default Filter
