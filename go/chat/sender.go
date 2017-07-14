@@ -484,6 +484,7 @@ func (s *BlockingSender) Send(ctx context.Context, convID chat1.ConversationID,
 		ConversationID: convID,
 		MessageBoxed:   *boxed,
 		AtMentions:     atMentions,
+		ChannelMention: chat1.ChannelMention_NONE,
 	}
 	plres, err := ri.PostRemote(ctx, rarg)
 	if err != nil {
